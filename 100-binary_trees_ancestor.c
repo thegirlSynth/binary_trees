@@ -3,7 +3,7 @@
 int search_node(const binary_tree_t *node, const binary_tree_t *search);
 
 /**
- * binary_tree_ancestor - finds the lowest common ancestor of two nodes
+ * binary_trees_ancestor - finds the lowest common ancestor of two nodes
  *
  * @first: a pointer to the first node
  * @second: a ponter to the second node
