@@ -11,16 +11,19 @@
 
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
-	int left, right, full;
+	int left, right, full, perfect_left, perfect_right;
 
 	if (!tree)
 		return (0);
+
+	perfect_left = binary_tree_is_perfect(tree->left);
+	perfect_right = binary_tree_is_perfect(tree->right);
 
 	left = binary_tree_height(tree->left);
 	right = binary_tree_height(tree->right);
 	full = binary_tree_is_full(tree);
 
-	if ((left == right) && full)
+	if ((left == right) && full && (perfect_left == perfect_right))
 		return (1);
 
 	return (0);
@@ -65,19 +68,12 @@ int binary_tree_is_full(const binary_tree_t *tree)
 	int left, right;
 
 	if (tree == NULL)
-		return (0);
-	if (tree->left == NULL && tree->right != NULL)
-		return (0);
-	if (tree->left != NULL && tree->right == NULL)
-		return (0);
-	if (tree->left == NULL && tree->right == NULL)
-		return (1);
+   		return (0);
 
 	left = binary_tree_is_full(tree->left);
 	right = binary_tree_is_full(tree->right);
 
-	if (left == 0 || right == 0)
-		return (0);
-
-	return (1);
+	if (left == right)
+    	return (1);
+	return (0);
 }
